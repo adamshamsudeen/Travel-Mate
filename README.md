@@ -2,7 +2,7 @@
 
 # What is Trip-Mate?
 
-Trip-Mate is an application that let's you create and search for trips anywhere in the world. 
+Trip-Mate is a django application that let's you create and search for trips anywhere in the world. 
 
 ![](https://raw.githubusercontent.com/adamshamsudeen/Travel-Mate/master/media/snap.png)
 
