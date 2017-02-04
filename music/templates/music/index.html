@@ -1,0 +1,105 @@
+{% extends 'music/base.html' %}
+{% block trips_active %}active{% endblock %}
+
+{% block body %}
+<div class="trips-container container-fluid">
+
+    <!-- Trips -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{ user.username }}'s Trips</h3>
+        </div>
+        {% if trips %}
+            
+
+            
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-primary ">
+                    <div class="panel-body text-prima">
+                        <table class="table">
+                            <thead> 
+                                <tr>
+                                    <th>TripCreator</th>
+                                    <th>Source</th>
+                                    <th>Destination</th>
+                                    <th>Vehicle</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for tr in trips %}
+                                    <tr>
+                                        <td>{{tr.user.username}}
+                                        <td>{{ tr.trip_source }}</td>
+                                        <td>{{ tr.trip_dest }}</td>
+                                        <td>{{ tr.vehicle }}</td>
+                                        <td>{{tr.date}}</td>
+                                        <td>{{tr.amount}}</td>
+                                    
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    	{% elif trip %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-primary ">
+                    <div class="panel-body text-prima">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Source</th>
+                                    <th>Destination</th>
+                                    <th>Vehicle</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for tr in trip %}
+                                    <tr>
+                                        
+                                        <td>{{ tr.trip_source }}</td>
+                                        <td>{{ tr.trip_dest }}</td>
+                                        <td>{{ tr.vehicle }}</td>
+                                        <td>{{tr.date}}</td>
+                                        <td>{{tr.amount}}</td>
+                                         <td>
+                                            <form action="{% url 'music:delete_trip' tr.id %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                                <input type="hidden" name="trip_id" value="{{ trip.id }}" />
+                                                <button type="submit" class="btn btn-danger btn-xs">
+                                                <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <div class="col-sm-12">
+                <br>
+                <a href="{% url 'music:create_trip' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add a Trip
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+    
+
+</div>
+{% endblock %}
