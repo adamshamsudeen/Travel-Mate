@@ -8,11 +8,11 @@ Trip-Mate is an application that let's you create and search for trips anywhere 
 
 ## How does it work?
 
-Installind dependencies:
-  sudo pip install -r requirements.txt
+Installing dependencies:
+ > sudo pip install -r requirements.txt
 
 Running the server:
-  python manage.py runserver
+ > python manage.py runserver
 
 To get started, first create a new Trip. 
 
